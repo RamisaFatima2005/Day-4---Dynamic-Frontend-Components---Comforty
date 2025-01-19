@@ -1,7 +1,11 @@
+"use client"
+
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 
 export default function About() {
+  const route=useRouter()
     const products = [
         {
           name: "The Poplar suede sofa",
@@ -27,7 +31,7 @@ export default function About() {
             <div className=' mt-10 w-full h-72 justify-center bg-[#007580] shadow-md shadow-slate-400'>
                 <h1 className='text-[#FFFFFF] font-bold mt-7 ml-10'>About Us-Comforty</h1>
                 <p className='text-[#FFFFFF] font-light mt-7 ml-10'>At Comforty, we believe that the right chair can transform your space and elevate your comfort. Specializing in ergonomic design, premium materials, and modern aesthetics, we craft chairs that seamlessly blend style with functionality.</p>
-                <button className='bg-[#029FAE] text-[#FFFFFF] font-light mt-7 ml-10'>View Collection</button>
+                <button onClick={()=>route.push("/products")} className='bg-[#029FAE] text-[#FFFFFF] font-light mt-7 ml-10'>View Collection</button>
             </div>
 
             <div className= 'w-full p-4 md:p-7 mt-10'>

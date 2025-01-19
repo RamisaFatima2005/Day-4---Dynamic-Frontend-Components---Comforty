@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { products } from "../page";
+import { products } from "@/components/(pages)/DetailComp";
 import { BsCartDash } from "react-icons/bs";
 import { Button } from "@/components/ui/button";
 import DetailComp from "@/components/(pages)/DetailComp";
@@ -12,7 +12,7 @@ interface Params {
 }
 
 export default function ProductDetail(params: Params) {
-  const product = products.find((key) => key.name === params.params.name);
+  const product = products.find((key:any) => key.name === params.params.name);
 
   if (!product) {
     return <p>Product not found!</p>;

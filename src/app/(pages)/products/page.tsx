@@ -4,29 +4,46 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { BsCartDash } from "react-icons/bs";
 import ProductComp from "@/components/(pages)/ProductComp";
+import { client } from "@/sanity/lib/client";
 
 export interface Product {
-  name: string;
-  price: number;
-  image: string;
+   _id:string
+  title:string;
+    price:number;
+    priceWithoutDiscount:number;
+    badge:string;
+    imageUrl:string;
+    description:string;
+    inventory:number;
+    tags:string[];
+    category:{
+      title:string;
+      products:number;
+      imageUrl:string;
+    }
 }
 
-export const products: Product[] = [
-  { name: "Chair1", price: 23, image: "/products/1.jpg" },
-  { name: "Chair2", price: 23, image: "/products/2.jpg" },
-  { name: "Chair3", price: 23, image: "/products/3.jpg" },
-  { name: "Chair4", price: 23, image: "/products/4.jpg" },
-  { name: "Chair5", price: 23, image: "/products/5.jpg" },
-  { name: "Chair6", price: 23, image: "/products/6.jpg" },
-  { name: "Chair7", price: 23, image: "/products/7.jpg" },
-  { name: "Chair8", price: 23, image: "/products/8.jpg" },
-  { name: "Chair9", price: 23, image: "/products/9.jpg" },
-  { name: "Chair10", price: 23, image: "/products/10.jpg" },
-  { name: "Chair11", price: 23, image: "/products/11.jpg" },
-  { name: "Chair12", price: 23, image: "/products/12.jpg" },
-];
+export default async function Products() {
 
-export default function Products() {
+  const products:Product[] = await client.fetch(`*[_type == "products"]{
+    _id,
+    title,
+    price,
+    priceWithoutDiscount,
+    badge,
+    "imageUrl":image.asset->url,
+    description,
+    inventory,
+    tags,
+    category->{
+      title,
+      products,
+      "imageUrl":image.asset->url}
+  }`)
+
+  console.log(products);
+  
+
   return (
     <div>
       <div className="flex flex-row ml-8 lg:ml-[135px] lg:py-14">
@@ -40,8 +57,8 @@ export default function Products() {
             className="bg-white w-[312px] h-[377px] overflow-hidden xl:px-7"
           >
             <Image
-              src={product.image}
-              alt={product.name}
+              src={product.imageUrl}
+              alt={product.title}
               width={300}
               height={300}
               className="w-full h-[312px] object-cover"
@@ -49,12 +66,12 @@ export default function Products() {
             <div className="p-0 flex flex-row justify-between mt-3">
               <span>
                 <h3 className="text-lg hover:text-[#029FAE] text-black font-normal">
-                  {product.name}
+                  {product.title}
                 </h3>
                 <p className="text-black text-xl font-bold">${product.price}</p>
               </span>
               <span className="text-gray-500">
-                <Link href={`/products/${product.name}`}>
+                <Link href={`/products/${product.title}`}>
                 <Button variant="outline" className="hover:bg-[#029FAE] text-black hover:text-white border border-slate-300 bg-slate-300 hover:border rounded-xl"><BsCartDash size={22} /></Button>
                  
                 </Link>
