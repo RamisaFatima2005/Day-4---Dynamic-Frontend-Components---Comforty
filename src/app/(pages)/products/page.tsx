@@ -71,7 +71,7 @@ export default async function Products() {
                 <p className="text-black text-xl font-bold">${product.price}</p>
               </span>
               <span className="text-gray-500">
-                <Link href={`/products/${product.title}`}>
+                <Link href={`/products/${product._id}`}>
                 <Button variant="outline" className="hover:bg-[#029FAE] text-black hover:text-white border border-slate-300 bg-slate-300 hover:border rounded-xl"><BsCartDash size={22} /></Button>
                  
                 </Link>
