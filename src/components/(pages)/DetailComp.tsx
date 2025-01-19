@@ -10,11 +10,11 @@ export interface Product {
   }
   
   export const products: Product[] = [
-    { name: "Chair1", price: 23, image: "/products/1.jpg" },
-    { name: "Chair2", price: 23, image: "/products/2.jpg" },
-    { name: "Chair3", price: 23, image: "/products/3.jpg" },
-    { name: "Chair4", price: 23, image: "/products/4.jpg" },
-    { name: "Chair5", price: 23, image: "/products/5.jpg" },
+    { name: "Chair1", price: 23, image: "/products/1.png" },
+    { name: "Chair2", price: 23, image: "/products/2.png" },
+    { name: "Chair3", price: 23, image: "/products/3.png" },
+    { name: "Chair4", price: 23, image: "/products/4.png" },
+    { name: "Chair5", price: 23, image: "/products/5.png" },
   ];
 
 export default function DetailComp() {

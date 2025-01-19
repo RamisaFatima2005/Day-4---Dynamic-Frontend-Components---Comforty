@@ -32,7 +32,7 @@ export default function Navbar() {
         </span>
 
         <span className="py-[18px]">
-          <Link href={"/products"}>
+          <Link href={"/cart"}>
             <Button
               variant="outline"
               className="hover:bg-[#029FAE] text-black hover:text-white border border-white bg-white hover:border rounded-xl"
